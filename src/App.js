@@ -5,6 +5,14 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <div id="searchWrapper">
+          <input 
+            type="text"
+            name="searchBar"
+            id="searchBar"
+            placeholder="search for a company"
+            />
+        </div>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           STONKS
