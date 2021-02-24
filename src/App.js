@@ -7,7 +7,7 @@ import Searchbar from './components/SearchBar';
 
 function App() {
   return (
-    <>
+    <React.Fragment>
     <Router>
       <Navbar />
       <Switch>
@@ -15,7 +15,7 @@ function App() {
       </Switch>
     </Router>
     <Searchbar />
-    </>
+    </React.Fragment>
   );
 }
 
