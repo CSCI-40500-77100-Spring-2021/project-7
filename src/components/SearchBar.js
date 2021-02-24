@@ -5,9 +5,9 @@ const SearchBar = ({ keyword, setKeyword }) => {
   return (
     <input
       type="text"
-      name="searchBar"
-      id="searchBar"
-      placeholder="search for a company"
+      name="SearchBar"
+      id="SearchBar"
+      placeholder="Enter stock ticker here"
     />
   );
 };
