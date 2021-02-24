@@ -4,6 +4,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Searchbar from './components/SearchBar';
+import Display from './components/Display'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       </Switch>
     </Router>
     <Searchbar />
+    <Display />
     </React.Fragment>
   );
 }
