@@ -1,7 +1,7 @@
 import React from "react";
 import "./StockDisplay.css";
 
-const Display = ({ keyword, setKeyword }) => {
+const StockDisplay = ({ keyword, setKeyword }) => {
   return (
     <div>
       <table border="1">
@@ -44,4 +44,4 @@ const Display = ({ keyword, setKeyword }) => {
   );
 };
 
-export default Display;
+export default StockDisplay;
