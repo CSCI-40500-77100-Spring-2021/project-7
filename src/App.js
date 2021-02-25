@@ -1,10 +1,10 @@
 // import logo from './logo.svg';
 import React from 'react';
 import './App.css';
-import Navbar from './components/Navbar';
+import Navbar from './components/NavBar/NavBar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Searchbar from './components/SearchBar';
-import Display from './components/Display'
+import Searchbar from './components/SearchBar/SearchBar';
+import StockDisplay from './components/StockDisplay/StockDisplay'
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
       </Switch>
     </Router>
     <Searchbar />
-    <Display />
+    <StockDisplay />
     </React.Fragment>
   );
 }

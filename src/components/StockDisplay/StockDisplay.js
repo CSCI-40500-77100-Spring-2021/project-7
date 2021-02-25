@@ -1,5 +1,5 @@
 import React from "react";
-import "./Display.css";
+import "./StockDisplay.css";
 
 const Display = ({ keyword, setKeyword }) => {
   return (
