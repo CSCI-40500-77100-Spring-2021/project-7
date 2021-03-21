@@ -4,6 +4,7 @@ import './App.css';
 import Navbar from './components/NavBar/NavBar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Searchbar from './components/SearchBar/SearchBar';
+import Data from './components/Data/Data'
 import StockDisplay from './components/StockDisplay/StockDisplay';
 import Chart from './Chart';
 // import PolygonApi from './components/PolygonApi';
@@ -22,6 +23,7 @@ const App =()=> {
     </Router>
     <Searchbar setTicker={setTicker}/>
     <Chart ticker={ticker}/>
+    <Data />
     </React.Fragment>
   );
 }
