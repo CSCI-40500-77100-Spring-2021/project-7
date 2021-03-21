@@ -5,6 +5,7 @@ import Navbar from './components/NavBar/NavBar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Searchbar from './components/SearchBar/SearchBar';
 import StockDisplay from './components/StockDisplay/StockDisplay'
+import Data from './components/Data/Data'
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
       </Switch>
     </Router>
     <Searchbar />
-    <StockDisplay />
+    {/* <StockDisplay /> */}
+    <Data />
     </React.Fragment>
   );
 }
