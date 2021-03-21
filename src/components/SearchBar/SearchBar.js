@@ -1,22 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SearchBar.css";
 
 const SearchBar = ({ setTicker, ticker }) => {
-  const onChangeTicker =(e)=>{
-   
-    setTicker(e.target.value);
-  }
+  const onChangeTicker = (e) => {
+    setTicker(searchTicker);
+    console.log("change ticker to:", e.target.value);
+    console.log("ticker state", ticker);
+  };
+
+  const [searchTicker, setSearchTicker] = useState("");
+
   return (
-    <div>
-    <input
-      type="text"
-      name="SearchBar"
-      id="SearchBar"
-      placeholder="Enter stock ticker here"
-      value={ticker}
-     onBlur={onChangeTicker}
-    />
-    <input type='button' value='Update'  onClick={onChangeTicker}/>
+    <div className="form-control">
+      <input
+        type="text"
+        name="SearchBar"
+        id="SearchBar"
+        placeholder="Enter stock ticker here"
+        value={searchTicker}
+        onChange={(e) => setSearchTicker(e.target.value)}
+      />
+      <input type="submit" onClick={onChangeTicker} />
     </div>
   );
 };

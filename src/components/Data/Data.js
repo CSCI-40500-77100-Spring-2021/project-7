@@ -1,78 +1,81 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-function GetData (){
+function GetData({ ticker }) {
+  console.log("data ticker: ", ticker);
 
-    const url = 'https://api.polygon.io/v1/meta/symbols/AAPL/company?&apiKey=yh8YgoEetmowqr2anPpzJhF_PpAU_Eio';
-    const [data, setData] = useState(null)
+  let url =
+    "https://api.polygon.io/v1/meta/symbols/" +
+    //TICKER MUST BE IN UPPERCASE FOR POLYGON API
+    ticker.toUpperCase() +
+    "/company?&apiKey=yh8YgoEetmowqr2anPpzJhF_PpAU_Eio";
 
-    let content = null
-    useEffect(() => {
-        axios.get(url)
-            .then(response => {
-                console.log(response.data);
-                setData(response.data)
-        })
-    }, [url])
+  console.log("data url: ", url);
 
-    
-    if(data){
-        content = 
-        <div>
-            <img src={data.logo}/>
-            <table border="1">
-                <tbody>
-                    <tr>
-                        <td>
-                            <h2>Company Name: </h2>
-                        </td>
-                        <td>
-                            <p> {data.name} </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h2>Industry: </h2>
-                        </td>
-                        <td>
-                            <p> {data.industry} </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h2>Description: </h2>
-                        </td>
-                        <td>
-                            <p> {data.description} </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h2>Website: </h2>
-                        </td>
-                        <td>
-                            <p> {data.url} </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h2>Country: </h2>
-                        </td>
-                        <td>
-                            <p> {data.country} </p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        
-    }
+  console.log("data table", ticker);
+  const [data, setData] = useState(null);
 
-    return (
-        <div>
-            {content}
-        </div>
-    )
+  let content = null;
+  useEffect(() => {
+    axios.get(url).then((response) => {
+      console.log(response.data);
+      setData(response.data);
+    });
+  }, [url]);
+
+  if (data) {
+    content = (
+      <div>
+        <img src={data.logo} alt="company logo" />
+        <table border="1">
+          <tbody>
+            <tr>
+              <td>
+                <h2>Company Name: </h2>
+              </td>
+              <td>
+                <p> {data.name} </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h2>Industry: </h2>
+              </td>
+              <td>
+                <p> {data.industry} </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h2>Description: </h2>
+              </td>
+              <td>
+                <p> {data.description} </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h2>Website: </h2>
+              </td>
+              <td>
+                <p> {data.url} </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h2>Country: </h2>
+              </td>
+              <td>
+                <p> {data.country} </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+
+  return <div>{content}</div>;
 }
 
-export default GetData
+export default GetData;
