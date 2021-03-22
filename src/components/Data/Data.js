@@ -13,6 +13,13 @@ function GetData({ ticker }) {
   console.log("data url: ", url);
 
   console.log("data table", ticker);
+
+  let priceUrl =
+    "https://api.polygon.io/v1/open-close/" +
+    //TICKER MUST BE IN UPPERCASE FOR POLYGON API
+    ticker.toUpperCase() +
+    "/2021-03-19?unadjusted=true&apiKey=yh8YgoEetmowqr2anPpzJhF_PpAU_Eio";
+
   const [data, setData] = useState(null);
 
   let content = null;
