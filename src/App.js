@@ -1,4 +1,5 @@
 // import logo from './logo.svg';
+
 import React, { useState } from "react";
 import "./App.css";
 import Navbar from "./components/NavBar/NavBar";
@@ -8,7 +9,7 @@ import Data from "./components/Data/Data";
 // import StockDisplay from "./components/StockDisplay/StockDisplay";
 import Chart from "./Chart";
 // import PolygonApi from './components/PolygonApi';
-
+import Watchlist from './components/Watchlist/Watchlist'
 const App = () => {
   const [ticker, setTicker] = useState("");
 
@@ -23,6 +24,7 @@ const App = () => {
       <Searchbar setTicker={setTicker} />
       <Chart ticker={ticker} />
       <Data ticker={ticker} />
+      <Watchlist />
     </React.Fragment>
   );
 };
