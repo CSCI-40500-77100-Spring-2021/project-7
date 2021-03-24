@@ -43,7 +43,10 @@ const Watchlist = ({keyword}) => {
 
     return(  
         <>
-        <List list={list} toggle={toggle}/> 
+        <h2 class="header">WATCHLIST</h2>
+        <div class="Tickers">
+            <List  list={list} toggle={toggle}/> 
+        </div>
         <input ref={TickerName}type ="text" />
         <button onClick={handledAdd}>ADD</button>
         <button onClick={handleRemove}>REMOVE</button>
