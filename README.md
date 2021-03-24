@@ -19,4 +19,4 @@ Prerequisites: Node.js and npm
 4. `npm start` - Run the app in the development mode.
 5. After you install everything go to localhost:3000 and enter stock ticker
 
-   ![stonkschart](./prototype-extension/png)
+   ![stonkschart](./prototype-extension.png)
