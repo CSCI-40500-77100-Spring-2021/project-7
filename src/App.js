@@ -9,7 +9,7 @@ import Data from "./components/Data/Data";
 // import StockDisplay from "./components/StockDisplay/StockDisplay";
 import Chart from "./Chart";
 // import PolygonApi from './components/PolygonApi';
-import Watchlist from './components/Watchlist/Watchlist'
+import Watchlist from "./components/Watchlist/Watchlist";
 const App = () => {
   const [ticker, setTicker] = useState("");
 
