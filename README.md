@@ -7,13 +7,16 @@ application THAT is tailored to students with little money or knowledge of the s
 
 ## Summary
 
-We envisioned our prototype as a basic stock search. We implemented a navigation menu (navigation changes uri, but pages weren't created), search bar (input doesn't actually search), and a stock information display (info is static) with limited functionality.
+We extended our prototype with dynamic stock search, historical price chart, and watchlist. We implemented a search bar (calls polygon API), a stock information display (polygon API), historical price chart (AlphaVantage API), and a basic watchlist with limited functionality.
 
 ## Instructions
+
+Prerequisites: Node.js and npm
 
 1. `git clone https://github.com/CSCI-40500-77100-Spring-2021/project-7.git`
 2. `cd project-7`
 3. `npm install` - Install app dependencies
 4. `npm start` - Run the app in the development mode.
 5. After you install everything go to localhost:3000 and enter stock ticker
-   stonkschart![image](https://user-images.githubusercontent.com/38230942/111915685-e429ed80-8a4d-11eb-8dc3-16688409b301.png)
+
+   ![stonkschart](./prototype-extension/png)
