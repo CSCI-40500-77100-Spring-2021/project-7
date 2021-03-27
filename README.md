@@ -9,6 +9,8 @@ application THAT is tailored to students with little money or knowledge of the s
 
 We extended our prototype with dynamic stock search, historical price chart, and watchlist. We implemented a search bar (calls polygon API), a stock information display (polygon API), historical price chart (AlphaVantage API), and a basic watchlist with limited functionality.
 
+# Product Architecture
+
 ## Important Qualities
 
 - Nonfunctional Product Characteristics
@@ -25,30 +27,7 @@ We extended our prototype with dynamic stock search, historical price chart, and
 
 ## Layered Architecture
 
-- User Interface
-
-  - Web browser (Desktop and mobile)
-
-- User Interface Management
-
-  - Login/Registration
-
-- Application Services
-
-  - Historical Price Chart
-  - Buy/Sell Stock
-  - Stock Search
-  - Query Stock Price
-
-- Shared Services
-
-  - St. Louis FED API
-  - AlphaVantage API
-  - Polygon.io API
-
-- Database
-  - Buy/Sell Transaction Logging
-  - Users
+![architecture-diagram](./images/Architecture-Diagram.png)
 
 ## Technologies
 
@@ -57,7 +36,7 @@ We extended our prototype with dynamic stock search, historical price chart, and
 - Server - Netlify
 - Development Technologies - React (Web Platform), Express/Node, Firebase
 
-## Instructions
+# Instructions
 
 Prerequisites: Node.js and npm
 
@@ -67,4 +46,4 @@ Prerequisites: Node.js and npm
 4. `npm start` - Run the app in the development mode.
 5. After you install everything go to localhost:3000 and enter stock ticker
 
-   ![stonkschart](./system_diagrams/prototype-extension.png)
+   ![stonkschart](./images/prototype-extension.png)
