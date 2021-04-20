@@ -15,10 +15,19 @@ Prerequisites: [Docker Desktop](https://www.docker.com/products/docker-desktop)
 
 ## Steps to use Docker container
 
-1. `docker pull bermetkydyk/stonks` - Download image from Docker Hub
-2. `docker tag bermetkydyk/stonks stonks-image` Rename local Docker image
-3. `docker run --name stonks-container -dp 3000:3000 stonks-image` - Run docker image
-4. Open [http://localhost:3000](http://localhost:3000)
+1. Download image from Docker Hub
+
+`docker pull bermetkydyk/stonks`
+
+2. Rename local Docker image
+
+`docker tag bermetkydyk/stonks stonks-image`
+
+3. Run docker image
+
+`docker run --name stonks-container -dp 3000:3000 stonks-image`
+
+4. Open [localhost:3000](http://localhost:3000)
 5. Search for your favorite stock
 
 # Product Architecture
