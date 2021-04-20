@@ -1,4 +1,4 @@
-# STONKS Prototype Extension
+# STONKS Containerization
 
 ## Product Vision
 
@@ -8,6 +8,18 @@ application THAT is tailored to students with little money or knowledge of the s
 ## Summary
 
 We extended our prototype with dynamic stock search, historical price chart, and watchlist. We implemented a search bar (calls polygon API), a stock information display (polygon API), historical price chart (AlphaVantage API), and a basic watchlist with limited functionality.
+
+# Docker
+
+Prerequisites: [Docker Desktop](https://www.docker.com/products/docker-desktop)
+
+## Steps to use Docker container
+
+1. `docker pull bermetkydyk/stonks` - Download image from Docker Hub
+2. `docker tag bermetkydyk/stonks stonks-image` Rename local Docker image
+3. `docker run --name stonks-container -dp 3000:3000 stonks-image` - Run docker image
+4. Open [http://localhost:3000](http://localhost:3000)
+5. Search for your favorite stock
 
 # Product Architecture
 
