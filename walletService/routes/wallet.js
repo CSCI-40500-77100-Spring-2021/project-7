@@ -49,33 +49,37 @@ router.route("/create").post((req, res) => {
 router.route("/deposit/").put((req, res) => {
   const walletID = req.body.id;
   const depositAmt = req.body.usdAmount;
-  Wallet.findById(walletID).then((wallet) => {
-    if (!wallet) {
-      return res.status(400).json({ errorMsg: "Wallet not found!", wallet });
-    }
-    wallet.usdBalance += Number(depositAmt);
-    wallet
-      .save()
-      .then((wallet) => res.json(wallet))
-      .catch((err) => res.status(400).json(err));
-  });
+  Wallet.findById(walletID)
+    .then((wallet) => {
+      if (!wallet) {
+        return res.status(400).json({ errorMsg: "Wallet not found!", wallet });
+      }
+      wallet.usdBalance += Number(depositAmt);
+      wallet
+        .save()
+        .then((wallet) => res.json(wallet))
+        .catch((err) => res.status(400).json(err));
+    })
+    .catch((err) => res.status(400).json(err));
 });
 
 // withdraw money
 // http://localhost:5001/api/wallet/withdraw/
 router.route("/withdraw/").put((req, res) => {
   const walletID = req.body.id;
-  const withdrawAmt = req.body.usdAmount;
-  Wallet.findById(walletID, (wallet) => {
-    if (!wallet) {
-      return res.status(400).json({ errorMsg: "Wallet not found!", wallet });
-    }
-    wallet.usdBalance -= Number(withdrawAmt);
-    wallet
-      .save()
-      .then((wallet) => res.status(200).json(wallet))
-      .catch((err) => res.status(400).json(err));
-  }).catch((err) => res.status(400).json(err));
+  const depositAmt = req.body.usdAmount;
+  Wallet.findById(walletID)
+    .then((wallet) => {
+      if (!wallet) {
+        return res.status(400).json({ errorMsg: "Wallet not found!", wallet });
+      }
+      wallet.usdBalance -= Number(depositAmt);
+      wallet
+        .save()
+        .then((wallet) => res.json(wallet))
+        .catch((err) => res.status(400).json(err));
+    })
+    .catch((err) => res.status(400).json(err));
 });
 
 // delete wallet
