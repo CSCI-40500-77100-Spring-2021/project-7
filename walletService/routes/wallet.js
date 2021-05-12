@@ -3,16 +3,22 @@ let Wallet = require("../models/wallet.model"); //mongoose model
 
 // Returns all wallets
 // http://localhost:5001/api/wallet/
-router.route("/").get((req, res) => {
+router.route("/admin").get((req, res) => {
   Wallet.find() //mongoose method that gets all users from MongoDB Atlas DB; returns a promise
-    .then((users) => res.status(200).json(users))
+    .then((wallet) => res.status(200).json(wallet))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-// 'http://localhost:5001/api/wallet/:id' - MongoDB ID
-router.route("/:id").get((req, res) => {
-  Wallet.findById(req.params.id)
-    .then((wallet) => res.status(200).json(wallet))
+// 'http://localhost:5001/api/wallet/' - MongoDB ID
+router.route("/").get((req, res) => {
+  const walletID = req.body.id;
+  Wallet.findById(walletID)
+    .then((wallet) => {
+      if (!wallet) {
+        return res.status(400).json({ errorMsg: "Wallet not found!" });
+      }
+      res.status(200).json(wallet);
+    })
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
@@ -23,67 +29,71 @@ router.route("/create").post((req, res) => {
 
   //check if username already exists
   Wallet.findOne({ username: username })
-    .then((user) => {
-      if (user) {
+    .then((wallet) => {
+      if (wallet) {
         return res.status(400).json("Error: Username already exists!");
       } else {
         const newWallet = new Wallet({ username, usdBalance: 0 });
 
         newWallet
           .save()
-          .then(() => res.status(200).json(`${username} wallet created!`))
+          .then((wallet) => res.status(200).json(wallet))
           .catch((err) => res.status(400).json("Error: " + err));
       }
     })
-    .catch((err) => console.log(err));
+    .catch((err) => res.status(400).json(err));
 });
 
 // deposit money
-// http://localhost:5001/api/wallet/deposit/:id
-router.route("/deposit/:id").put((req, res) => {
+// http://localhost:5001/api/wallet/deposit/
+router.route("/deposit/").put((req, res) => {
   const walletID = req.body.id;
   const depositAmt = req.body.usdAmount;
-  Wallet.findById(walletID, (err, wallet) => {
+  Wallet.findById(walletID).then((wallet) => {
     if (!wallet) {
-      return res.status(400).json("Wallet not found!");
+      return res.status(400).json({ errorMsg: "Wallet not found!", wallet });
     }
     wallet.usdBalance += Number(depositAmt);
     wallet
       .save()
-      .then((user) => res.json({ walletID, usdBalance: wallet.usdBalance }))
-      .catch((err) => console.log(err));
+      .then((wallet) => res.json(wallet))
+      .catch((err) => res.status(400).json(err));
   });
 });
 
 // withdraw money
-// http://localhost:5001/api/wallet/withdraw/:id
-router.route("/withdraw/:id").put((req, res) => {
+// http://localhost:5001/api/wallet/withdraw/
+router.route("/withdraw/").put((req, res) => {
   const walletID = req.body.id;
   const withdrawAmt = req.body.usdAmount;
-  Wallet.findById(walletID, (err, wallet) => {
+  Wallet.findById(walletID, (wallet) => {
+    if (!wallet) {
+      return res.status(400).json({ errorMsg: "Wallet not found!", wallet });
+    }
     wallet.usdBalance -= Number(withdrawAmt);
     wallet
       .save()
-      .then((user) => res.json({ usdBalance: wallet.usdBalance }))
-      .catch((err) => console.log(err));
-  });
+      .then((wallet) => res.status(200).json(wallet))
+      .catch((err) => res.status(400).json(err));
+  }).catch((err) => res.status(400).json(err));
 });
 
 // delete wallet
-// http://localhost:5001/api/wallet/delete/:id
-router.route("/delete/:id").delete((req, res) => {
+// http://localhost:5001/api/wallet/delete/
+router.route("/delete/").delete((req, res) => {
   const walletID = req.body.id;
 
-  Wallet.findByIdAndDelete(walletID)
+  Wallet.findById(walletID)
     .then((wallet) => {
       if (!wallet) {
-        return res.status(400).json("Wallet not found!");
+        return res.status(400).json({ errorMsg: "Wallet not found!", wallet });
       } else if (wallet.usdBalance != 0) {
-        return res.status(400).json("Wallet not empty!");
+        return res.status(400).json({ errorMsg: "Wallet not empty!", wallet });
       }
-      return res.status(200).json(`${wallet.username} wallet deleted!`);
+      wallet.delete();
+      res.status(200).json({ wallet });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => res.status(400).json(err));
 });
 
 module.exports = router;
