@@ -31,7 +31,7 @@ router.route("/create").post((req, res) => {
   Wallet.findOne({ username: username })
     .then((wallet) => {
       if (wallet) {
-        return res.status(400).json("Error: Username already exists!");
+        return res.status(400).json({ errorMsg: "Username already exists!" });
       } else {
         const newWallet = new Wallet({ username, usdBalance: 0 });
 
