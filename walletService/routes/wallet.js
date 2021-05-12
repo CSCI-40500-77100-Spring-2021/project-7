@@ -17,7 +17,7 @@ router.route("/").get((req, res) => {
       if (!wallet) {
         return res.status(400).json({ errorMsg: "Wallet not found!" });
       }
-      res.status(200).json(wallet);
+      res.status(200).json({ walletID, usdBalance: wallet.usdBalance });
     })
     .catch((err) => res.status(400).json("Error: " + err));
 });
@@ -37,7 +37,9 @@ router.route("/create").post((req, res) => {
 
         newWallet
           .save()
-          .then((wallet) => res.status(200).json(wallet))
+          .then((wallet) =>
+            res.status(200).json({ walletID, usdBalance: wallet.usdBalance })
+          )
           .catch((err) => res.status(400).json("Error: " + err));
       }
     })
@@ -52,12 +54,14 @@ router.route("/deposit/").put((req, res) => {
   Wallet.findById(walletID)
     .then((wallet) => {
       if (!wallet) {
-        return res.status(400).json({ errorMsg: "Wallet not found!", wallet });
+        return res.status(400).json({ errorMsg: "Wallet not found!" });
       }
       wallet.usdBalance += Number(depositAmt);
       wallet
         .save()
-        .then((wallet) => res.json(wallet))
+        .then((wallet) =>
+          res.status(200).json({ id: wallet.id, usdBalance: wallet.usdBalance })
+        )
         .catch((err) => res.status(400).json(err));
     })
     .catch((err) => res.status(400).json(err));
@@ -71,12 +75,14 @@ router.route("/withdraw/").put((req, res) => {
   Wallet.findById(walletID)
     .then((wallet) => {
       if (!wallet) {
-        return res.status(400).json({ errorMsg: "Wallet not found!", wallet });
+        return res.status(400).json({ errorMsg: "Wallet not found!" });
       }
       wallet.usdBalance -= Number(depositAmt);
       wallet
         .save()
-        .then((wallet) => res.json(wallet))
+        .then((wallet) =>
+          res.status(200).json({ walletID, usdBalance: wallet.usdBalance })
+        )
         .catch((err) => res.status(400).json(err));
     })
     .catch((err) => res.status(400).json(err));
@@ -90,12 +96,14 @@ router.route("/delete/").delete((req, res) => {
   Wallet.findById(walletID)
     .then((wallet) => {
       if (!wallet) {
-        return res.status(400).json({ errorMsg: "Wallet not found!", wallet });
+        return res.status(400).json({ errorMsg: "Wallet not found!" });
       } else if (wallet.usdBalance != 0) {
-        return res.status(400).json({ errorMsg: "Wallet not empty!", wallet });
+        return res.status(400).json({ errorMsg: "Wallet not empty!" });
       }
       wallet.delete();
-      res.status(200).json({ wallet });
+      res
+        .status(200)
+        .json({ message: `${walletid} successfully deleted`, wallet });
     })
     .catch((err) => res.status(400).json(err));
 });
