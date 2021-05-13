@@ -17,7 +17,11 @@ router.route("/").get((req, res) => {
       if (!wallet) {
         return res.status(400).json({ errorMsg: "Wallet not found!" });
       }
-      res.status(200).json({ walletID, usdBalance: wallet.usdBalance });
+      res.status(200).json({
+        walletID,
+        username: wallet.username,
+        usdBalance: wallet.usdBalance,
+      });
     })
     .catch((err) => res.status(400).json("Error: " + err));
 });
@@ -38,9 +42,11 @@ router.route("/create").post((req, res) => {
         newWallet
           .save()
           .then((wallet) =>
-            res
-              .status(200)
-              .json({ id: wallet._id, usdBalance: wallet.usdBalance })
+            res.status(200).json({
+              id: wallet._id,
+              username: wallet.username,
+              usdBalance: wallet.usdBalance,
+            })
           )
           .catch((err) => res.status(400).json("Error: " + err));
       }
@@ -62,7 +68,11 @@ router.route("/deposit/").put((req, res) => {
       wallet
         .save()
         .then((wallet) =>
-          res.status(200).json({ id: wallet.id, usdBalance: wallet.usdBalance })
+          res.status(200).json({
+            id: wallet.id,
+            username: wallet.username,
+            usdBalance: wallet.usdBalance,
+          })
         )
         .catch((err) => res.status(400).json(err));
     })
@@ -83,7 +93,11 @@ router.route("/withdraw/").put((req, res) => {
       wallet
         .save()
         .then((wallet) =>
-          res.status(200).json({ walletID, usdBalance: wallet.usdBalance })
+          res.status(200).json({
+            walletID,
+            username: wallet.username,
+            usdBalance: wallet.usdBalance,
+          })
         )
         .catch((err) => res.status(400).json(err));
     })
