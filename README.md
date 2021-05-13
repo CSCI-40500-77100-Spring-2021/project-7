@@ -9,6 +9,7 @@ application THAT is tailored to students with little money or knowledge of the s
 
 We extended our prototype with dynamic stock search, historical price chart, and watchlist. We implemented a search bar (calls polygon API), a stock information display (polygon API), historical price chart (AlphaVantage API), and a basic watchlist with limited functionality.
 
+
 # Wallet Microservice
 
 ## Diagram
@@ -63,6 +64,7 @@ Delete - /api/wallet/delete
 Data flows as follow:
 
 User Input => Main Application <=> Wallet Component <=> Wallet Service <=> Wallet Database
+
 
 # Docker
 
