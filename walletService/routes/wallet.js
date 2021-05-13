@@ -38,7 +38,9 @@ router.route("/create").post((req, res) => {
         newWallet
           .save()
           .then((wallet) =>
-            res.status(200).json({ walletID, usdBalance: wallet.usdBalance })
+            res
+              .status(200)
+              .json({ id: wallet._id, usdBalance: wallet.usdBalance })
           )
           .catch((err) => res.status(400).json("Error: " + err));
       }
@@ -101,11 +103,9 @@ router.route("/delete/").delete((req, res) => {
         return res.status(400).json({ errorMsg: "Wallet not empty!" });
       }
       wallet.delete();
-      res
-        .status(200)
-        .json({ message: `${walletid} successfully deleted`, wallet });
+      return res.status(200).json(`${walletid} successfully deleted`);
     })
-    .catch((err) => res.status(400).json(err));
+    .catch((err) => res.status(200).json(err));
 });
 
 module.exports = router;
