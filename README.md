@@ -1,4 +1,4 @@
-# STONKS Containerization
+# STONKS
 
 ## Product Vision
 
@@ -9,27 +9,61 @@ application THAT is tailored to students with little money or knowledge of the s
 
 We extended our prototype with dynamic stock search, historical price chart, and watchlist. We implemented a search bar (calls polygon API), a stock information display (polygon API), historical price chart (AlphaVantage API), and a basic watchlist with limited functionality.
 
-# Request from cURL
-1. Return all user accrounts from database using this curl command:
-  
-  `curl -X GET http://18.191.207.224:5001/api/wallet/admin`
-  
-  
-2. Create a new user account through this curl command by replaceing the value <INPUT YOUR DESIRED USERNAME HERE>:
 
-        curl --header "Content-Type: application/json" \
-        --request POST \
-        --data '{"username":"<INPUT YOUR DESIRED USERNAME HERE>"}' \
-        http://18.191.207.224:5001/api/wallet/create
+# Wallet Microservice
 
-  
-3.Add a specified amount of money to a user's account using this curl command <INSERT DESIRED AMOUNT OF MONEY HERE>:
-  
-    curl --header "Content-Type: application/json"  --request PUT   --data '{"id":"609c93978460b61b3a4f5010", "usdAmount":"<INSERT DESIRED AMOUNT OF MONEY HERE>"}' http://18.191.207.224:5001/api/wallet/deposit
-  
-# Data Inconsistency
-1. We did not experience any problems with data inconsistency
+## Diagram
 
+![microservice-architecture](./images/microservice-architecture.png)
+
+## Description
+
+We chose to refactor the wallet functionality from our application. One of the features of STONKS is the ability to buy and sell stocks. This necessitates the creation of a wallet as users need to fund their wallets before they are able to conduct transactions (buying and selling).
+
+## Communicating with the microservice
+
+## Wallet Microservice Characteristics
+
+### Self Contained
+
+The Wallet Service uses MongoDB to hold all wallet related data `{id, username, usdBalance}`. Only the Wallet Service has access to this database. There are no external dependencies.
+
+### Lightweight
+
+The Wallet Service expects `application/JSON` headers and responds with a `JSON` object.
+
+### Implementation-independent
+
+The Wallet Service uses MongoDB, a noSQL database, as opposed to PostgreSQL, which is used by our main application.
+
+### Independently deployable
+
+The Wallet Service can be updated and deployed independently from the main application. As the expected input is JSON and output is JSON, modifying the service's internal implementation would not cause any issues.
+
+### Business-oriented
+
+The Wallet Service is integral to the overall function of our application. One of our features is to allow users the ability to buy and sell stocks. To streamline the process, all transactions will take place in STONKS. Creating a centralized wallet reduces the external dependencies needed to pull bank account or funds from outside the application.
+
+### Data Consistency
+
+We did not encounter any issues in managing data consistency as only the Wallet Service has access to wallets. No other services have write nor read access.
+
+## Service Calls
+
+The main application's wallet component calls each endpoint as necessary.
+We implemented the relevant CRUD functions:
+
+```
+Create - /api/wallet/create
+Read - /api/wallet OR /api/wallet/admin
+Update - /api/wallet/deposit
+Update - /api/wallet/withdraw
+Delete - /api/wallet/delete
+```
+
+Data flows as follow:
+
+User Input => Main Application <=> Wallet Component <=> Wallet Service <=> Wallet Database
 
 
 # Docker
