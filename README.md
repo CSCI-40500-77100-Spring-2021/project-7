@@ -9,6 +9,26 @@ application THAT is tailored to students with little money or knowledge of the s
 
 We extended our prototype with dynamic stock search, historical price chart, and watchlist. We implemented a search bar (calls polygon API), a stock information display (polygon API), historical price chart (AlphaVantage API), and a basic watchlist with limited functionality.
 
+# Request from cURL
+1. Return all user accrounts from database using this curl command:
+  curl -X GET http://18.191.207.224:5001/api/wallet/admin
+  
+  
+2. Create a new user account through this curl command by replaceing the value <INPUT YOUR DESIRED USERNAME HERE>:
+  curl --header "Content-Type: application/json" \
+    --request POST \
+    --data '{"username":"<INPUT YOUR DESIRED USERNAME HERE>"}' \
+    http://18.191.207.224:5001/api/wallet/create
+  
+  
+3.Add a specified amount of money to a user's account using this curl command <INSERT DESIRED AMOUNT OF MONEY HERE>:
+  curl --header "Content-Type: application/json"  --request PUT   --data '{"id":"609c93978460b61b3a4f5010", "usdAmount":"<INSERT DESIRED AMOUNT OF MONEY HERE>"}'   http://18.191.207.224:5001/api/wallet/deposit
+  
+# Data Inconsistency
+1. We did not experience any problems with data inconsistency
+
+
+
 # Docker
 
 Prerequisites: [Docker Desktop](https://www.docker.com/products/docker-desktop)
