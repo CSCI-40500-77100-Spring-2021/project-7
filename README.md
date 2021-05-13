@@ -29,7 +29,7 @@ The Wallet Service uses MongoDB to hold all wallet related data `{id, username, 
 
 ### Lightweight
 
-The Wallet Service expects application/json headers and responds with a json object.
+The Wallet Service expects `application/JSON` headers and responds with a `JSON` object.
 
 ### Implementation-independent
 
