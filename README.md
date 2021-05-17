@@ -1,7 +1,7 @@
 # Security of Stonks Authentication 
 
 ## Hashing passwords using Node.js and bcrypt library
-- Bcrypt library allows us to hash and compare passwords. It a way to hash and store passwords safely in the database. 
+- Bcrypt library allows us to hash and compare passwords. It is a way to hash and store passwords safely in the database. 
 - We implemented the authentication using bcrypt so that it can store the passwords in PostgreSQL database. 
 - The following is an example from our database of how we safe the information for log in and registration in our database:
 [
