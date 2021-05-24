@@ -1,6 +1,6 @@
 # STONKS Testing Instructions
 
 ## Testing 
-npm i
-npm run test
+- npm i
+- npm run test
 
