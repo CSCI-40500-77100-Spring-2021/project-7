@@ -8,8 +8,7 @@ Stonks website went through 10 units tests, the two test classes are SearchBar.t
 
 testing![image](https://user-images.githubusercontent.com/38230942/119393758-5e216180-bc9f-11eb-963e-1965d247c0d3.png)
 
-The two files can be found in the Testing branch: https://github.com/CSCI-40500-77100-Spring-2021/project-7/tree/Testing/src/components inside of Data and SearchBar folder that are called Data.test.js https://github.com/CSCI-40500-77100-Spring-2021/project-7/blob/Testing/src/components/Data/Data.test.js and SearchBar.test.js https://github.com/CSCI-40500-77100-Spring-2021/project-7/blob/Testing/src/components/SearchBar/SearchBar.test.js  
-
+The two files can be found in the Testing branch: https://github.com/CSCI-40500-77100-Spring-2021/project-7/tree/Testing/src/components inside of Data and SearchBar folder.
 For the search bar we ran 5 tests:
 1. Loads and displays a search input.
 2. Correct label output.
