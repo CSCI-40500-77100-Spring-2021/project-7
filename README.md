@@ -25,9 +25,12 @@ For the data we ran 5 tests:
 
 All of the tests were passed and worked:
 Test Suites: 2 passed, 2 total
+
 Tests:       10 passed, 10 total
+
 Snapshots:   0 total
-Time:        5.777 s
+
+Time:        5.777 s 
 
 ## Instructions for testing:
 - npm i
