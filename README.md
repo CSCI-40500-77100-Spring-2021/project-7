@@ -1,5 +1,7 @@
 # STONKS
 
+## Test Badge
+
 [![Build Status](https://travis-ci.com/CSCI-40500-77100-Spring-2021/project-7.svg?branch=main)](https://travis-ci.com/CSCI-40500-77100-Spring-2021/project-7)
 
 ## Product Vision
