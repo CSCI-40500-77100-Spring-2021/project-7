@@ -1,5 +1,7 @@
 # STONKS
 
+[![Build Status](https://travis-ci.com/CSCI-40500-77100-Spring-2021/project-7.svg?branch=main)](https://travis-ci.com/CSCI-40500-77100-Spring-2021/project-7)
+
 ## Product Vision
 
 FOR students WHO want to learn more about investing, THE STONKS is an educational/financial web
