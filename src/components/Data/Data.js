@@ -2,46 +2,44 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 function GetData({ ticker }) {
-  console.log("data ticker: ", ticker);
-
-  let url =
-    "https://api.polygon.io/v1/meta/symbols/" +
-    //TICKER MUST BE IN UPPERCASE FOR POLYGON API
-    ticker.toUpperCase() +
-    "/company?&apiKey=yh8YgoEetmowqr2anPpzJhF_PpAU_Eio";
-
-  console.log("data url: ", url);
-
-  console.log("data table", ticker);
-
-  let priceUrl =
-    "https://api.polygon.io/v1/open-close/" +
-    //TICKER MUST BE IN UPPERCASE FOR POLYGON API
-    ticker.toUpperCase() +
-    "/2021-03-19?unadjusted=true&apiKey=yh8YgoEetmowqr2anPpzJhF_PpAU_Eio";
-
+  // console.log("data ticker: ", ticker);
   const [data, setData] = useState(null);
 
   let content = null;
   useEffect(() => {
-    axios.get(url).then((response) => {
-      console.log(response.data);
-      setData(response.data);
-    });
-  }, [url]);
+    if (ticker) {
+      let url =
+        "https://api.polygon.io/v1/meta/symbols/" +
+        //TICKER MUST BE IN UPPERCASE FOR POLYGON API
+        ticker.toUpperCase() +
+        "/company?&apiKey=yh8YgoEetmowqr2anPpzJhF_PpAU_Eio";
+
+      let priceUrl =
+        "https://api.polygon.io/v1/open-close/" +
+        //TICKER MUST BE IN UPPERCASE FOR POLYGON API
+        ticker.toUpperCase() +
+        "/2021-03-19?unadjusted=true&apiKey=yh8YgoEetmowqr2anPpzJhF_PpAU_Eio";
+
+      axios.get(url).then((response) => {
+        console.log("here");
+        setData(response.data);
+      });
+    }
+  }, [ticker]);
 
   if (data) {
+    console.log("there is some data here");
     content = (
       <div>
         <img src={data.logo} alt="company logo" />
-        <table border="1">
+        <table aria-label="table" border="1">
           <tbody>
             <tr>
               <td>
-                <h2>Company Name: </h2>
+                <h2 aria-label="Company Name">Company Name: </h2>
               </td>
               <td>
-                <p> {data.name} </p>
+                <p aria-label="name">{data.name}</p>
               </td>
             </tr>
             <tr>
@@ -49,7 +47,7 @@ function GetData({ ticker }) {
                 <h2>Industry: </h2>
               </td>
               <td>
-                <p> {data.industry} </p>
+                <p aria-label="industry">{data.industry}</p>
               </td>
             </tr>
             <tr>
@@ -57,7 +55,7 @@ function GetData({ ticker }) {
                 <h2>Description: </h2>
               </td>
               <td>
-                <p> {data.description} </p>
+                <p aria-label="description">{data.description}</p>
               </td>
             </tr>
             <tr>
@@ -65,7 +63,7 @@ function GetData({ ticker }) {
                 <h2>Website: </h2>
               </td>
               <td>
-                <p> {data.url} </p>
+                <p aria-label="url">{data.url}</p>
               </td>
             </tr>
             <tr>
@@ -73,7 +71,7 @@ function GetData({ ticker }) {
                 <h2>Country: </h2>
               </td>
               <td>
-                <p> {data.country} </p>
+                <p aria-label="country">{data.country}</p>
               </td>
             </tr>
           </tbody>

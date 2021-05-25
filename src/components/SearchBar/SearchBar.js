@@ -4,14 +4,15 @@ import "./SearchBar.css";
 const SearchBar = ({ setTicker, ticker }) => {
   const onChangeTicker = (e) => {
     setTicker(searchTicker);
-    console.log("change ticker to:", e.target.value);
-    console.log("ticker state", ticker);
+    // console.log("change ticker to:", e.target.value);
+    // console.log("ticker state", ticker);
   };
 
   const [searchTicker, setSearchTicker] = useState("");
 
   return (
     <div className="form-control">
+      <label htmlFor="SearchBar">Enter Stock Ticker</label>
       <input
         type="text"
         name="SearchBar"
@@ -20,7 +21,7 @@ const SearchBar = ({ setTicker, ticker }) => {
         value={searchTicker}
         onChange={(e) => setSearchTicker(e.target.value)}
       />
-      <input type="submit" onClick={onChangeTicker} />
+      <input type="submit" aria-label="submit" onClick={onChangeTicker} />
     </div>
   );
 };
